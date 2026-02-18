@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Lock, ArrowRight, Shield, Timer, Coins } from 'lucide-react';
+import { Lock, ArrowRight, Shield, Timer, Coins, Share2 } from 'lucide-react';
 import { useWallet } from '@/contexts/WalletContext';
 import logo from '@/assets/logo.png';
+
+const SITE_URL = 'https://stx-lock-earn.vercel.app';
 
 const Home = () => {
   const { connected, connectWallet, connecting } = useWallet();
@@ -94,6 +96,17 @@ const Home = () => {
                   View Dashboard
                 </motion.button>
               </Link>
+              <motion.a
+                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent('🔐 I just discovered Stack Lock — a self-accountability dApp on Stacks.\n\nLock your STX. Complete your goal. Earn it back.\n\nNo excuses. Pure discipline.\n\n' + SITE_URL)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-secondary/50 border border-border text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all text-sm font-medium"
+              >
+                <Share2 size={16} />
+                Share on 𝕏
+              </motion.a>
             </div>
           </motion.div>
         </div>
