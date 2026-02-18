@@ -1,7 +1,20 @@
 import { motion } from 'framer-motion';
 import { Lock as LockType, getLockStatus } from '@/lib/locks';
 import CountdownTimer from './CountdownTimer';
-import { Lock, CheckCircle2, AlertTriangle, ArrowDownToLine } from 'lucide-react';
+import { Lock, CheckCircle2, AlertTriangle, ArrowDownToLine, Share2 } from 'lucide-react';
+
+const SITE_URL = 'https://stx-lock-earn.vercel.app';
+
+function getShareText(lock: { goal: string; amount: number; deadline: Date; completed: boolean }, status: string) {
+  const deadlineStr = new Date(lock.deadline).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  if (status === 'completed') {
+    return `✅ I locked ${lock.amount} STX on Stack Lock and actually completed my goal!\n\n"${lock.goal}"\n\nPure discipline. No excuses. Got my STX back. 💪\n\n${SITE_URL}`;
+  }
+  if (status === 'expired') {
+    return `😤 I locked ${lock.amount} STX on Stack Lock and didn't finish in time.\n\n"${lock.goal}"\n\nFunds locked forever. Lesson learned. Next time I won't slip.\n\n${SITE_URL}`;
+  }
+  return `🔐 I just locked ${lock.amount} STX on Stack Lock as motivation to "${lock.goal}" by ${deadlineStr}.\n\nIf I don't finish, I lose it ALL. No excuses. Pure accountability.\n\nHold me to it 👀\n\n${SITE_URL}`;
+}
 
 interface LockCardProps {
   lock: LockType;
@@ -98,6 +111,18 @@ const LockCard = ({ lock, onComplete, onWithdraw }: LockCardProps) => {
           🔒 Funds Locked Forever
         </div>
       )}
+
+      <motion.a
+        href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(getShareText(lock, status))}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        whileHover={{ scale: 1.03 }}
+        whileTap={{ scale: 0.97 }}
+        className="mt-2 w-full flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-secondary/50 border border-border text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all text-xs font-medium"
+      >
+        <Share2 size={14} />
+        Share on 𝕏
+      </motion.a>
     </motion.div>
   );
 };
