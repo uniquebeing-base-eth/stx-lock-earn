@@ -1,73 +1,158 @@
-# Welcome to your Lovable project
+# Stack Lock
 
-## Project info
+Lock your STX. Complete your goal. Earn it back.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+Stack Lock is a self-accountability dApp built on the Stacks blockchain. Users lock STX into a smart contract as a commitment to complete a goal. If they complete it before the deadline, they withdraw their STX. If they fail, the funds remain locked.
 
-## How can I edit this code?
+Simple. Psychological. Powerful.
 
-There are several ways of editing your application.
 
-**Use Lovable**
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+# Overview
 
-Changes made via Lovable will be committed automatically to this repo.
+Stack Lock helps users build discipline using financial commitment.
+	1.	User locks STX into a smart contract.
+	2.	User sets a goal and deadline.
+	3.	If completed before deadline → user withdraws STX.
+	4.	If not completed → STX remains locked permanently in V1.
 
-**Use your preferred IDE**
+No voting.
+No complexity.
+Pure commitment.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+# How It Works
 
-Follow these steps:
+Create Lock
+	•	Connect wallet (Leather or Xverse)
+	•	Enter goal description
+	•	Choose STX amount
+	•	Set deadline
+	•	Confirm transaction
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+Complete Goal
+	•	Mark goal as completed before deadline
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+Withdraw
+	•	Withdraw full STX after marking completed
 
-# Step 3: Install the necessary dependencies.
-npm i
+If deadline passes before completion → withdrawal is disabled.
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Architecture
+
+Smart Contract
+	•	Written in Clarity
+	•	Stores locks in a map
+	•	Handles STX transfers
+	•	Enforces deadlines and ownership
+
+Frontend
+	•	Next.js
+	•	Stacks Connect
+	•	TailwindCSS
+	•	Wallet integration (Leather, Xverse)
+
+
+
+# Smart Contract Structure
+
+Each lock contains:
+	•	Owner (principal)
+	•	Amount (uint)
+	•	Deadline (block height or timestamp)
+	•	Completed (bool)
+	•	Withdrawn (bool)
+
+Core functions:
+	•	create-lock
+	•	complete-lock
+	•	withdraw
+
+
+
+# Security Rules
+	•	Amount must be greater than zero
+	•	Deadline must be in the future
+	•	Only lock owner can complete or withdraw
+	•	Cannot withdraw twice
+	•	Cannot complete after deadline
+
+
+
+# Network
+
+Deployed on:
+	•	Stacks Testnet (initial)
+	•	Stacks Mainnet (after testing)
+
+Explorer: Hiro Explorer
+
+# Local Development
+
+1️⃣ Install dependencies
+
+npm install
+
+2️⃣ Run frontend
+
 npm run dev
-```
 
-**Edit a file directly in GitHub**
+3️⃣ Deploy contract
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Use Clarinet or Hiro tools for deployment to testnet.
 
-**Use GitHub Codespaces**
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
 
-## What technologies are used for this project?
+# Project Structure
 
-This project is built with:
+/contracts
+  stack-lock.clar
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+/frontend
+  pages/
+  components/
+  lib/
 
-## How can I deploy this project?
+/public
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
 
-## Can I connect a custom domain to my Lovable project?
 
-Yes, you can!
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+# Testing
+	•	Test all edge cases:
+	•	Withdraw before completion (should fail)
+	•	Complete after deadline (should fail)
+	•	Double withdraw (should fail)
+	•	Non-owner interactions (should fail)
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+
+
+# Roadmap
+
+V1
+	•	Basic lock and withdraw logic
+	•	Simple dashboard
+	•	Manual completion
+
+V2
+	•	Proof upload
+	•	Public goal feed
+
+V3
+	•	Community voting
+	•	Partial slashing
+	•	Reputation scoring
+
+
+# Why Stack Lock?
+
+Discipline is hard.
+
+Stack Lock makes commitment financial and real.
+You either complete your goal — or lose your STX.
+
+
+# License
+
+MIT License
+
