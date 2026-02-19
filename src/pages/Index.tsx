@@ -1,3 +1,4 @@
+
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Lock, ArrowRight, Shield, Timer, Coins, Share2 } from 'lucide-react';
