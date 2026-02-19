@@ -1,3 +1,4 @@
+
 ;; Stack Lock - Self-Accountability Smart Contract
 ;; V1: Lock STX, complete goal before deadline, or lose funds forever
 
