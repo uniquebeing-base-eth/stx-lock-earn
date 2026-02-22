@@ -1,4 +1,5 @@
 
+
 import { motion } from 'framer-motion';
 import { Lock as LockType, getLockStatus } from '@/lib/locks';
 import CountdownTimer from './CountdownTimer';
