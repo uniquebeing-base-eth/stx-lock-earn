@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Lock, Wallet, LogOut } from 'lucide-react';
 import logo from '@/assets/logo.png';
 
+
 const Navbar = () => {
   const { connected, address, connecting, connectWallet, disconnectWallet } = useWallet();
   const location = useLocation();
