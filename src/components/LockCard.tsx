@@ -5,6 +5,7 @@ import { Lock as LockType, getLockStatus } from '@/lib/locks';
 import CountdownTimer from './CountdownTimer';
 import { Lock, CheckCircle2, AlertTriangle, ArrowDownToLine, Share2 } from 'lucide-react';
 
+
 const SITE_URL = 'https://stx-lock-earn.vercel.app';
 
 function getShareText(lock: { goal: string; amount: number; deadline: Date; completed: boolean }, status: string) {
