@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { getTimeRemaining } from '@/lib/locks';
 
 
+
 interface CountdownTimerProps {
   deadline: Date;
   compact?: boolean;
