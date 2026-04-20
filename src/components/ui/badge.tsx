@@ -5,8 +5,9 @@ import { cn } from "@/lib/utils";
 
 const badgeVariants = cva(
   "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold",
-  "transition-all duration-200 whitespace-nowrap",
+  "whitespace-nowrap transition-all duration-200",
   "focus:outline-none focus:ring-2 focus:ring-ring/50 focus:ring-offset-2",
+  "[&>svg]:mr-1 [&>svg]:h-3 [&>svg]:w-3",
   {
     variants: {
       variant: {
@@ -17,7 +18,7 @@ const badgeVariants = cva(
         destructive:
           "border-transparent bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
         outline:
-          "border-border/50 text-foreground bg-transparent hover:bg-muted",
+          "border-border/50 bg-transparent text-foreground hover:bg-muted",
       },
     },
     defaultVariants: {
@@ -33,7 +34,11 @@ export interface BadgeProps
 function Badge({ className, variant, ...props }: BadgeProps) {
   return (
     <div
-      className={cn(badgeVariants({ variant }), className)}
+      className={cn(
+        badgeVariants({ variant }),
+        "inline-flex items-center justify-center",
+        className
+      )}
       {...props}
     />
   );
