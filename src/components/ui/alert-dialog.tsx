@@ -19,6 +19,7 @@ const AlertDialogOverlay = React.forwardRef<
       "fixed inset-0 z-50 bg-black/70 backdrop-blur-sm",
       "data-[state=open]:animate-in data-[state=closed]:animate-out",
       "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+      "duration-200 ease-in-out",
       className,
     )}
     {...props}
@@ -38,8 +39,8 @@ const AlertDialogContent = React.forwardRef<
       className={cn(
         "fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg",
         "translate-x-[-50%] translate-y-[-50%]",
-        "gap-4 border border-border/50 bg-background p-6 shadow-xl",
-        "duration-200",
+        "gap-5 border border-border/50 bg-background p-6 shadow-xl",
+        "duration-200 ease-in-out",
         "data-[state=open]:animate-in data-[state=closed]:animate-out",
         "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
         "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
@@ -68,7 +69,7 @@ AlertDialogHeader.displayName = "AlertDialogHeader";
 const AlertDialogFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
     className={cn(
-      "flex flex-col-reverse gap-2 sm:flex-row sm:justify-end sm:space-x-2 sm:gap-0",
+      "flex flex-col-reverse gap-2 sm:flex-row sm:justify-end sm:gap-2",
       className
     )}
     {...props}
@@ -82,7 +83,11 @@ const AlertDialogTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <AlertDialogPrimitive.Title
     ref={ref}
-    className={cn("text-lg font-semibold tracking-tight", className)}
+    className={cn(
+      "text-lg font-semibold tracking-tight",
+      "leading-none",
+      className
+    )}
     {...props}
   />
 ));
@@ -94,7 +99,10 @@ const AlertDialogDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <AlertDialogPrimitive.Description
     ref={ref}
-    className={cn("text-sm text-muted-foreground leading-relaxed", className)}
+    className={cn(
+      "text-sm text-muted-foreground leading-relaxed",
+      className
+    )}
     {...props}
   />
 ));
@@ -108,7 +116,7 @@ const AlertDialogAction = React.forwardRef<
     ref={ref}
     className={cn(
       buttonVariants(),
-      "transition-all duration-200",
+      "transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]",
       className
     )}
     {...props}
@@ -124,7 +132,7 @@ const AlertDialogCancel = React.forwardRef<
     ref={ref}
     className={cn(
       buttonVariants({ variant: "outline" }),
-      "mt-2 sm:mt-0 transition-all duration-200",
+      "mt-2 sm:mt-0 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]",
       className
     )}
     {...props}
