@@ -1,5 +1,3 @@
-
-
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { ChevronRight, MoreHorizontal } from "lucide-react";
@@ -65,9 +63,10 @@ const BreadcrumbLink = React.forwardRef<
     <Comp
       ref={ref}
       className={cn(
+        "inline-flex items-center gap-1",
         "transition-colors duration-200",
         "hover:text-foreground",
-        "focus:outline-none focus-visible:ring-2 focus-visible:ring-ring/50 rounded-sm",
+        "focus:outline-none focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:ring-offset-2 rounded-sm",
         className
       )}
       {...props}
@@ -86,6 +85,7 @@ const BreadcrumbPage = React.forwardRef<
     aria-disabled="true"
     aria-current="page"
     className={cn(
+      "inline-flex items-center",
       "font-medium text-foreground",
       className
     )}
@@ -103,8 +103,8 @@ const BreadcrumbSeparator = ({
     role="presentation"
     aria-hidden="true"
     className={cn(
-      "text-muted-foreground/70",
-      "[&>svg]:size-3.5",
+      "flex items-center text-muted-foreground/70",
+      "[&>svg]:h-3.5 [&>svg]:w-3.5",
       className
     )}
     {...props}
@@ -123,7 +123,8 @@ const BreadcrumbEllipsis = ({
     aria-hidden="true"
     className={cn(
       "flex h-8 w-8 items-center justify-center rounded-md",
-      "text-muted-foreground hover:text-foreground transition-colors duration-200",
+      "text-muted-foreground transition-colors duration-200 hover:text-foreground",
+      "focus:outline-none focus-visible:ring-2 focus-visible:ring-ring/50",
       className
     )}
     {...props}
