@@ -12,6 +12,8 @@ const Avatar = React.forwardRef<
     className={cn(
       "relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full",
       "border border-border/50 shadow-sm",
+      "transition-all duration-200 ease-in-out",
+      "hover:shadow-md",
       className
     )}
     {...props}
@@ -27,7 +29,8 @@ const AvatarImage = React.forwardRef<
     ref={ref}
     className={cn(
       "aspect-square h-full w-full object-cover",
-      "transition-all duration-200",
+      "transition-all duration-200 ease-in-out",
+      "group-hover:scale-[1.03]",
       className
     )}
     {...props}
@@ -44,6 +47,7 @@ const AvatarFallback = React.forwardRef<
     className={cn(
       "flex h-full w-full items-center justify-center rounded-full",
       "bg-muted text-muted-foreground text-sm font-medium",
+      "transition-colors duration-200",
       className
     )}
     {...props}
