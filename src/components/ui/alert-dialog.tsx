@@ -14,8 +14,9 @@ const AccordionItem = React.forwardRef<
     ref={ref}
     className={cn(
       "border-b border-border/50 last:border-none",
-      "transition-colors duration-200",
-      "hover:border-border",
+      "transition-all duration-300 ease-out",
+      "hover:border-primary/20",
+      "data-[state=open]:border-primary/30",
       className
     )}
     {...props}
@@ -32,9 +33,10 @@ const AccordionTrigger = React.forwardRef<
     <AccordionPrimitive.Trigger
       ref={ref}
       className={cn(
-        "group flex flex-1 items-center justify-between gap-4 rounded-md py-4 text-left text-sm font-medium",
-        "transition-colors duration-200",
+        "group flex flex-1 items-center justify-between gap-4 rounded-lg py-4 text-left text-sm font-medium",
+        "transition-all duration-300 ease-out",
         "hover:text-primary",
+        "data-[state=open]:text-primary",
         "focus-visible:outline-none",
         "focus-visible:ring-2 focus-visible:ring-ring",
         "focus-visible:ring-offset-2",
@@ -44,12 +46,15 @@ const AccordionTrigger = React.forwardRef<
       )}
       {...props}
     >
-      <span className="flex-1">{children}</span>
+      <span className="flex-1 leading-relaxed">
+        {children}
+      </span>
 
       <ChevronDown
         className={cn(
-          "h-4 w-4 shrink-0",
-          "transition-transform duration-300 ease-in-out"
+          "h-4 w-4 shrink-0 opacity-70",
+          "transition-all duration-300 ease-out",
+          "group-hover:opacity-100"
         )}
         aria-hidden="true"
       />
@@ -74,7 +79,7 @@ const AccordionContent = React.forwardRef<
   >
     <div
       className={cn(
-        "pb-4 pt-1 leading-7",
+        "pb-5 pt-1 leading-7 text-muted-foreground/90",
         className
       )}
     >
@@ -85,4 +90,4 @@ const AccordionContent = React.forwardRef<
 
 AccordionContent.displayName = AccordionPrimitive.Content.displayName;
 
-export { Accordion, AccordionItem, AccordionTrigger, AccordionContent };
+export { Accordion, AccordionItem, AccordionTrigger, AccordionContent };ordionContent };
