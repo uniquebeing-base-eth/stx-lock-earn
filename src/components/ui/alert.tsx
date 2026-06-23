@@ -5,10 +5,10 @@ import { cn } from "@/lib/utils";
 
 const alertVariants = cva(
   [
-    "relative w-full rounded-lg border p-4 shadow-sm",
-    "transition-colors duration-200",
+    "relative w-full rounded-xl border p-4 shadow-sm",
+    "transition-all duration-300 ease-out",
 
-    "[&>svg~*]:pl-7",
+    "[&>svg~*]:pl-8",
     "[&>svg+div]:translate-y-[-2px]",
 
     "[&>svg]:absolute",
@@ -17,21 +17,27 @@ const alertVariants = cva(
     "[&>svg]:h-4",
     "[&>svg]:w-4",
     "[&>svg]:text-foreground",
+
+    "hover:shadow-md",
   ].join(" "),
   {
     variants: {
       variant: {
-        default:
-          "border-border/50 bg-background text-foreground",
+        default: [
+          "border-border/50",
+          "bg-background",
+          "text-foreground",
+          "hover:border-border",
+        ].join(" "),
 
-        destructive:
-          [
-            "border-destructive/40",
-            "bg-destructive/5",
-            "text-destructive",
-            "dark:border-destructive/60",
-            "[&>svg]:text-destructive",
-          ].join(" "),
+        destructive: [
+          "border-destructive/40",
+          "bg-destructive/5",
+          "text-destructive",
+          "shadow-destructive/5",
+          "dark:border-destructive/60",
+          "[&>svg]:text-destructive",
+        ].join(" "),
       },
     },
 
@@ -63,7 +69,8 @@ const AlertTitle = React.forwardRef<
   <h5
     ref={ref}
     className={cn(
-      "mb-1 font-semibold leading-none tracking-tight",
+      "mb-1.5 font-semibold leading-none tracking-tight",
+      "text-foreground",
       className
     )}
     {...props}
@@ -81,6 +88,7 @@ const AlertDescription = React.forwardRef<
     className={cn(
       "text-sm leading-relaxed text-muted-foreground",
       "[&_p]:leading-relaxed",
+      "[&_a]:font-medium [&_a]:underline-offset-4 hover:[&_a]:underline",
       className
     )}
     {...props}
