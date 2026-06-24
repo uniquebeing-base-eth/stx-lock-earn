@@ -13,7 +13,7 @@ const Breadcrumb = React.forwardRef<
   <nav
     ref={ref}
     aria-label="breadcrumb"
-    className={cn("w-full", className)}
+    className={cn("w-full min-w-0", className)}
     {...props}
   />
 ));
@@ -28,7 +28,7 @@ const BreadcrumbList = React.forwardRef<
     className={cn(
       "flex flex-wrap items-center gap-1.5 sm:gap-2.5",
       "text-sm text-muted-foreground",
-      "break-words",
+      "break-words min-w-0",
       className
     )}
     {...props}
@@ -43,7 +43,7 @@ const BreadcrumbItem = React.forwardRef<
   <li
     ref={ref}
     className={cn(
-      "inline-flex items-center gap-1.5",
+      "inline-flex min-w-0 items-center gap-1.5",
       className
     )}
     {...props}
@@ -63,10 +63,11 @@ const BreadcrumbLink = React.forwardRef<
     <Comp
       ref={ref}
       className={cn(
-        "inline-flex items-center gap-1",
-        "transition-colors duration-200",
+        "inline-flex min-w-0 items-center gap-1 rounded-sm",
+        "transition-colors duration-200 ease-in-out",
         "hover:text-foreground",
-        "focus:outline-none focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:ring-offset-2 rounded-sm",
+        "focus:outline-none focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:ring-offset-2",
+        "truncate",
         className
       )}
       {...props}
@@ -85,7 +86,7 @@ const BreadcrumbPage = React.forwardRef<
     aria-disabled="true"
     aria-current="page"
     className={cn(
-      "inline-flex items-center",
+      "inline-flex min-w-0 items-center truncate",
       "font-medium text-foreground",
       className
     )}
@@ -103,7 +104,7 @@ const BreadcrumbSeparator = ({
     role="presentation"
     aria-hidden="true"
     className={cn(
-      "flex items-center text-muted-foreground/70",
+      "flex shrink-0 items-center text-muted-foreground/70",
       "[&>svg]:h-3.5 [&>svg]:w-3.5",
       className
     )}
@@ -122,18 +123,18 @@ const BreadcrumbEllipsis = ({
     role="presentation"
     aria-hidden="true"
     className={cn(
-      "flex h-8 w-8 items-center justify-center rounded-md",
-      "text-muted-foreground transition-colors duration-200 hover:text-foreground",
-      "focus:outline-none focus-visible:ring-2 focus-visible:ring-ring/50",
+      "flex h-8 w-8 shrink-0 items-center justify-center rounded-md",
+      "text-muted-foreground transition-colors duration-200 ease-in-out",
+      "hover:text-foreground",
       className
     )}
     {...props}
   >
     <MoreHorizontal className="h-4 w-4" />
-    <span className="sr-only">More</span>
+    <span className="sr-only">More breadcrumb items</span>
   </span>
 );
-BreadcrumbEllipsis.displayName = "BreadcrumbElipssis";
+BreadcrumbEllipsis.displayName = "BreadcrumbEllipsis";
 
 export {
   Breadcrumb,
