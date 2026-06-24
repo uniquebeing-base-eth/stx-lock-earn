@@ -16,21 +16,21 @@ function Calendar({
   return (
     <DayPicker
       showOutsideDays={showOutsideDays}
-      className={cn("p-3", className)}
+      className={cn("p-3 select-none", className)}
       classNames={{
         months:
           "flex flex-col sm:flex-row gap-4 sm:gap-6",
         month:
           "space-y-4",
         caption:
-          "flex justify-center pt-1 relative items-center",
+          "relative flex justify-center pt-1 items-center",
         caption_label:
-          "text-sm font-medium",
+          "text-sm font-medium truncate",
         nav:
-          "space-x-1 flex items-center",
+          "flex items-center space-x-1",
         nav_button: cn(
           buttonVariants({ variant: "outline" }),
-          "h-7 w-7 bg-transparent p-0 opacity-60 hover:opacity-100 transition-opacity"
+          "h-7 w-7 bg-transparent p-0 opacity-60 hover:opacity-100 hover:shadow-sm transition-all duration-200"
         ),
         nav_button_previous:
           "absolute left-1",
@@ -45,21 +45,22 @@ function Calendar({
         row:
           "flex w-full mt-2",
         cell:
-          "h-9 w-9 text-center text-sm p-0 relative",
+          "relative h-9 w-9 p-0 text-center text-sm focus-within:relative focus-within:z-20",
         day: cn(
           buttonVariants({ variant: "ghost" }),
-          "h-9 w-9 p-0 font-normal aria-selected:opacity-100"
+          "h-9 w-9 p-0 font-normal transition-all duration-200",
+          "aria-selected:opacity-100"
         ),
         day_range_end:
           "day-range-end",
         day_selected:
-          "bg-primary text-primary-foreground hover:bg-primary/90 focus:bg-primary focus:text-primary-foreground",
+          "bg-primary text-primary-foreground shadow-sm hover:bg-primary/90 focus:bg-primary focus:text-primary-foreground",
         day_today:
-          "bg-accent text-accent-foreground",
+          "bg-accent text-accent-foreground font-semibold",
         day_outside:
           "text-muted-foreground opacity-50 aria-selected:bg-accent/50 aria-selected:opacity-70",
         day_disabled:
-          "text-muted-foreground opacity-40",
+          "text-muted-foreground opacity-40 cursor-not-allowed",
         day_range_middle:
           "aria-selected:bg-accent aria-selected:text-accent-foreground",
         day_hidden:
@@ -67,8 +68,12 @@ function Calendar({
         ...classNames,
       }}
       components={{
-        IconLeft: () => <ChevronLeft className="h-4 w-4" />,
-        IconRight: () => <ChevronRight className="h-4 w-4" />,
+        IconLeft: () => (
+          <ChevronLeft className="h-4 w-4 transition-transform duration-200" />
+        ),
+        IconRight: () => (
+          <ChevronRight className="h-4 w-4 transition-transform duration-200" />
+        ),
       }}
       {...props}
     />
